@@ -1,5 +1,6 @@
 package com.mynote.admin.interceptor;
 
+import com.mynote.admin.config.WebSecurityConfig;
 import org.springframework.lang.Nullable;
 import org.springframework.util.StringUtils;
 import org.springframework.web.servlet.ModelAndView;
@@ -20,7 +21,7 @@ public class LoginInterceptor extends HandlerInterceptorAdapter {
                              Object handler) throws Exception {
         System.out.println("preHandle -----");
 
-        String userName = (String)request.getSession().getAttribute("username");
+        String userName = (String)request.getSession().getAttribute(WebSecurityConfig.SESSION_KEY);
 
         if(StringUtils.isEmpty(userName)){
             response.sendRedirect(request.getContextPath() + "/login.html");

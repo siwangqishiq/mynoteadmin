@@ -3,7 +3,7 @@
 <head>
     <meta charset="UTF-8">
     <!-- import CSS -->
-    <link rel="stylesheet" href="https://unpkg.com/element-ui/lib/theme-chalk/index.css">
+    <link rel="stylesheet" href="css/index.css">
     <title>PMNote后台系统</title>
 
 <style>
@@ -31,22 +31,23 @@
     </el-row>
 
     <el-row>
-        <el-col :span="8"><el-input v-model="pwd" placeholder="密码"></el-input></el-col>
+        <el-col :span="8"><el-input v-model="pwd" placeholder="密码" type="password" ></el-input></el-col>
     </el-row>
 
     <el-row>
-        <el-button @click="visible = true" type="primary" >登录</el-button>
+        <el-button @click="submit()" type="primary" >登录</el-button>
     </el-row>
 </div>
 </body>
 
 
 <!-- import Vue before Element -->
-<script src="https://unpkg.com/vue/dist/vue.js"></script>
+<script src="lib/vue.js"></script>
+<script src="lib/vue-resource.min.js"></script>
 <!-- import JavaScript -->
-<script src="https://unpkg.com/element-ui/lib/index.js"></script>
+<script src="lib/index.js"></script>
 <script>
-    new Vue({
+    var app = new Vue({
       el: '#app',
 
       data:{
@@ -55,7 +56,60 @@
       },
 
       methods:{
+        submit:function(){
+            if(!checkForm())
+                return
+
+            this.$http.post('/api/dologin',
+            {
+                username:this.username,
+                pwd: this.pwd
+            }
+            ,{emulateJSON:true})
+            .then(
+                function onSuccess(res){
+                    console.log(res);
+                    //alert(res.body)
+                    //var json=JSON.parse(res.body)
+                    //console.log(json)
+
+                    if(res.body === null){
+                        alert('登录失败')
+                        return
+                    }
+
+                    //console.log("data = " + res.body.data)
+                    //console.log(res.body.data.username)
+                    if(res.body.code === 200){
+                        //alert('登录成功')
+                        window.location = "/page/index";
+                        return
+                    }
+                    alert('登录失败')
+                },
+
+                function onError(res){
+                    //console.log(res);
+                    alert('登录失败')
+                })
+        },
+
       }
     })
+
+    function checkForm(){
+        if(app.username === ''){
+            alert('用户名为空')
+            return false
+        }
+
+        if(app.pwd === ''){
+            alert('密码为空')
+            return false
+        }
+
+        return true
+    }
+
   </script>
 </html>
