@@ -18,9 +18,9 @@ import javax.servlet.http.HttpSession;
 @RestController
 public class IndexController {
 
-    @RequestMapping(value= "/page/index" , method = RequestMethod.GET)
+    @RequestMapping(value= "/page/main" , method = RequestMethod.GET)
     public ModelAndView mainPage(HttpServletRequest request){
-        ModelAndView mv = new ModelAndView("index");
+        ModelAndView mv = new ModelAndView("main");
         Object userName = request.getSession().getAttribute(WebSecurityConfig.SESSION_KEY);
         mv.addObject("username" , userName);
         return mv;

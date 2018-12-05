@@ -3,7 +3,7 @@
 <head>
     <meta charset="UTF-8">
     <!-- import CSS -->
-    <link rel="stylesheet" href="css/index.css">
+    <link rel="stylesheet" href="https://unpkg.com/element-ui/lib/theme-chalk/index.css">
     <title>PMNote后台系统</title>
 
 <style>
@@ -40,12 +40,12 @@
 </div>
 </body>
 
-
 <!-- import Vue before Element -->
-<script src="lib/vue.js"></script>
-<script src="lib/vue-resource.min.js"></script>
+<script src="https://unpkg.com/vue/dist/vue.js"></script>
+
+<script src="https://cdn.staticfile.org/vue-resource/1.5.1/vue-resource.min.js"></script>
 <!-- import JavaScript -->
-<script src="lib/index.js"></script>
+<script src="https://unpkg.com/element-ui/lib/index.js"></script>
 <script>
     var app = new Vue({
       el: '#app',
@@ -82,7 +82,7 @@
                     //console.log(res.body.data.username)
                     if(res.body.code === 200){
                         //alert('登录成功')
-                        window.location = "/page/index";
+                        window.location = "/page/main";
                         return
                     }
                     alert('登录失败')
