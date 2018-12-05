@@ -21,6 +21,7 @@
     <script src="https://unpkg.com/vue/dist/vue.js"></script>
     <!-- import JavaScript -->
     <script src="https://unpkg.com/element-ui/lib/index.js"></script>
+    <script src="https://cdn.staticfile.org/vue-resource/1.5.1/vue-resource.min.js"></script>
 </head>
 
 <body>
@@ -29,31 +30,12 @@
         <el-aside width="200px" style="background-color: rgb(238, 241, 246)">
             <el-menu :default-openeds="['1']">
                 <el-submenu index="1">
-                    <template slot="title"><i class="el-icon-message"></i>导航一</template>
+                    <template slot="title"><i class="el-icon-menu"></i>App设置</template>
                     <el-menu-item-group>
-                        <template slot="title">分组一</template>
-                        <el-menu-item index="1-1">选项1</el-menu-item>
-                        <el-menu-item index="1-2">选项2</el-menu-item>
+                        <template slot="title">版本管理</template>
+                        <el-menu-item index="2-1">ios版本</el-menu-item>
+                        <el-menu-item index="2-2">android版本</el-menu-item>
                     </el-menu-item-group>
-                    <el-menu-item-group title="分组2">
-                        <el-menu-item index="1-3">选项3</el-menu-item>
-                    </el-menu-item-group>
-                </el-submenu>
-
-                <el-submenu index="2">
-                    <template slot="title"><i class="el-icon-menu"></i>导航二</template>
-                    <el-menu-item-group>
-                        <template slot="title">分组一</template>
-                        <el-menu-item index="2-1">选项1</el-menu-item>
-                        <el-menu-item index="2-2">选项2</el-menu-item>
-                    </el-menu-item-group>
-                    <el-menu-item-group title="分组2">
-                        <el-menu-item index="2-3">选项3</el-menu-item>
-                    </el-menu-item-group>
-                    <el-submenu index="2-4">
-                        <template slot="title">选项4</template>
-                        <el-menu-item index="2-4-1">选项4-1</el-menu-item>
-                    </el-submenu>
                 </el-submenu>
             </el-menu>
         </el-aside>
@@ -63,12 +45,11 @@
                 <el-dropdown>
                     <i class="el-icon-setting" style="margin-right: 15px"></i>
                     <el-dropdown-menu slot="dropdown">
-                        <el-dropdown-item>查看</el-dropdown-item>
-                        <el-dropdown-item>新增</el-dropdown-item>
-                        <el-dropdown-item>删除</el-dropdown-item>
+                        <el-dropdown-item>帮助</el-dropdown-item>
+                        <el-dropdown-item  @click.native="dialogVisible = true">退出</el-dropdown-item>
                     </el-dropdown-menu>
                 </el-dropdown>
-                <span>王小虎</span>
+                <span>${username}</span>
             </el-header>
 
             <el-main>
@@ -83,24 +64,49 @@
             </el-main>
         </el-container>
     </el-container>
+
+
+    <el-dialog title="提示" :visible.sync="dialogVisible" width="30%" :before-close="handleClose">
+      <span>是否确认退出?</span>
+      <span slot="footer" class="dialog-footer">
+        <el-button @click="dialogVisible = false">取 消</el-button>
+        <el-button type="primary" @click="logout">确 定</el-button>
+      </span>
+    </el-dialog>
+
 </div>
 </body>
 
 <script>
-var Main = {
-    data() {
-      const item = {
-        date: '2016-05-02',
-        name: '王小虎',
-        address: '上海市普陀区金沙江路 1518 弄'
-      };
-      return {
-        tableData: Array(20).fill(item)
-      }
-    }
-  };
-var Ctor = Vue.extend(Main)
+var appVue = new Vue({
+    el:"#app",
+    data:{
+        dialogVisible:false
+    },
+    methods:{
+        test : function(){
+            alert('hahaha')
+        },
+        logout: function(){
+             this.$http.post('/api/dologout',null,{emulateJSON:true})
+                        .then(
+                            function onSuccess(res){
+                                if(res.body === null){
+                                    return
+                                }
+                                if(res.body.code === 200){
+                                    window.location = "/login.html";
+                                    return
+                                }
+                            },
 
-new Ctor().$mount('#app')
+                            function onError(res){
+                            }
+                        )
+
+            appVue.dialogVisible = false;
+        }
+    }
+})
 </script>
 </html>

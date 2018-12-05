@@ -31,4 +31,18 @@ public class LoginController {
         return result;
     }
 
+    /**
+     * 退出登录
+     * @param loginInfo
+     * @param session
+     * @return
+     */
+    @RequestMapping(value= "/api/dologout" , method = RequestMethod.POST)
+    public Result<LoginUserInfo> doLogout(LoginUserInfo loginInfo,HttpSession session){
+        Result<LoginUserInfo> result = new Result<LoginUserInfo>();
+        session.removeAttribute(WebSecurityConfig.SESSION_KEY);
+        result.setCode(200);
+        result.setMsg("退出成功!");
+        return result;
+    }
 }//end class
