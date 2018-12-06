@@ -8,7 +8,7 @@ public class Version {
     public static final int TYPE_IOS = 1;
     public static final int TYPE_ANDROID = 2;
 
-    private long id;
+    private int id;
     private int versionCode;
     private String versionName;
     private String url;
@@ -36,11 +36,11 @@ public class Version {
 
     private long createTime;
 
-    public long getId() {
+    public int getId() {
         return id;
     }
 
-    public void setId(long id) {
+    public void setId(int id) {
         this.id = id;
     }
 

@@ -39,9 +39,9 @@ public interface AppVersionDao {
             "descrption,extra,status,type,updateTime,createTime) " +
             "values(#{versionCode},#{versionName}," +
             "#{url},#{descrption},#{extra},#{status},#{type},#{updateTime},#{createTime})")
-    @SelectKey(statement = "SELECT seq id FROM sqlite_sequence WHERE (name = 'version')",
+    @SelectKey(statement = "select max(rowid) from version",
             before = false, keyProperty = "id", resultType = int.class)
-    public int insert(Version appVersion);
+    public void insert(Version appVersion);
 
     //@SelectKey()
     public Version findVersionById(int id);

@@ -10,8 +10,10 @@ public class VersionService {
     @Autowired
     private AppVersionDao appVersionDao;
 
-    public long addNewVersion(Version version){
-        return appVersionDao.insert(version);
+    public int addNewVersion(Version version){
+        appVersionDao.insert(version);
+        return version.getId();
     }
+
 
 }//end class
