@@ -17,6 +17,8 @@ public class Version {
     private int status;
     private int type;
     private long updateTime;
+    private long createTime;
+
 
     public long getUpdateTime() {
         return updateTime;
@@ -33,8 +35,6 @@ public class Version {
     public void setCreateTime(long createTime) {
         this.createTime = createTime;
     }
-
-    private long createTime;
 
     public int getId() {
         return id;

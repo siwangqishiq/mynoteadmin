@@ -23,25 +23,27 @@ public class AppInfoController {
     @Autowired
     private VersionService versionService;
 
-    @RequestMapping(value= "/api/addversion" , method = RequestMethod.GET)
-    public List<String> findAppVersionList(HttpServletRequest request) throws Exception{
-        Version version = new Version();
-        version.setDescrption("测试看看");
-        version.setVersionCode(1);
-        version.setVersionName("1.0");
-        version.setUrl("http://www.sex520.com");
-        version.setStatus(Version.STATUS_IDLE);
-        version.setType(Version.TYPE_ANDROID);
-        version.setUpdateTime(new Date().getTime());
-        version.setCreateTime(new Date().getTime());
+    @RequestMapping(value= "/api/addversion" , method = RequestMethod.POST)
+    public Result<Long> findAppVersionList(HttpServletRequest request,Version version) throws Exception{
         long id = versionService.addNewVersion(version);
         System.out.println("id = " + id);
-        return null;
+        Result<Long> result = new Result<Long>();
+        result.setSuccessData(id);
+        return result;
     }
 
     @RequestMapping(value= "/api/versionList" , method = RequestMethod.GET)
-    public Result<String> addAppVersion(HttpServletRequest request){
-        return null;
+    public Result<List<Version>> addAppVersion(HttpServletRequest request,int platform){
+        Result<List<Version>> result = new Result<List<Version>>();
+        if(platform == Version.TYPE_ANDROID){
+            result.setSuccessData(versionService.findAndroidVersionList());
+        }else if(platform == Version.TYPE_IOS){
+            result.setSuccessData(versionService.findIOSVersionList());
+        }else{
+            result.setError("platform error");
+        }
+        return result;
     }
+
 
 }//end class

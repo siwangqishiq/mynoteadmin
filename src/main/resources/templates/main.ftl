@@ -33,7 +33,7 @@
                     <template slot="title"><i class="el-icon-menu"></i>App设置</template>
                     <el-menu-item-group>
                         <template slot="title">版本管理</template>
-                        <el-menu-item index="2-1">ios版本</el-menu-item>
+                        <el-menu-item index="2-1" >ios版本</el-menu-item>
                         <el-menu-item index="2-2">android版本</el-menu-item>
                     </el-menu-item-group>
                 </el-submenu>
