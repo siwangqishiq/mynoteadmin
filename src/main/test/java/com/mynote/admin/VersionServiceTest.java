@@ -23,8 +23,8 @@ public class VersionServiceTest {
         version.setType(Version.TYPE_IOS);
         version.setVersionCode(2);
         version.setVersionName("1.2");
-        version.setUrl("http://haah.com");
-        version.setDescrption("我是介绍");
+        version.setUrl("http://11111.app");
+        version.setDescrption("我是IOS介绍");
         version.setStatus(Version.STATUS_IDLE);
         version.setUpdateTime(System.currentTimeMillis());
         version.setCreateTime(System.currentTimeMillis());
@@ -39,8 +39,8 @@ public class VersionServiceTest {
         version.setType(Version.TYPE_IOS);
         version.setVersionCode(2);
         version.setVersionName("1.2");
-        version.setUrl("http://haah.com");
-        version.setDescrption("我是介绍");
+        version.setUrl("http://xxx.apk");
+        version.setDescrption("我是android介绍");
         version.setStatus(Version.STATUS_IDLE);
         version.setUpdateTime(System.currentTimeMillis());
         version.setCreateTime(System.currentTimeMillis());
