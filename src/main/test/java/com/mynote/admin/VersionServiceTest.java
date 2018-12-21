@@ -36,7 +36,7 @@ public class VersionServiceTest {
     @Test
     public void testServicefind(){
         Version version = new Version();
-        version.setType(Version.TYPE_IOS);
+        version.setType(Version.TYPE_ANDROID);
         version.setVersionCode(2);
         version.setVersionName("1.2");
         version.setUrl("http://xxx.apk");
