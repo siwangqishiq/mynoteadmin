@@ -99,4 +99,20 @@ public class Version {
     public void setType(int type) {
         this.type = type;
     }
+
+    @Override
+    public String toString() {
+        return "Version{" +
+                "id=" + id +
+                ", versionCode=" + versionCode +
+                ", versionName='" + versionName + '\'' +
+                ", url='" + url + '\'' +
+                ", descrption='" + descrption + '\'' +
+                ", extra='" + extra + '\'' +
+                ", status=" + status +
+                ", type=" + type +
+                ", updateTime=" + updateTime +
+                ", createTime=" + createTime +
+                '}';
+    }
 }//end class

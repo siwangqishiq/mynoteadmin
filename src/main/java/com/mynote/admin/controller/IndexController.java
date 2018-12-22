@@ -20,7 +20,7 @@ public class IndexController {
 
     @RequestMapping(value= "/page/main" , method = RequestMethod.GET)
     public ModelAndView mainPage(HttpServletRequest request){
-        ModelAndView mv = new ModelAndView("main");
+        ModelAndView mv = new ModelAndView("index");
         Object userName = request.getSession().getAttribute(WebSecurityConfig.SESSION_KEY);
         mv.addObject("username" , userName);
         return mv;

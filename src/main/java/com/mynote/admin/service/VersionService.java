@@ -5,6 +5,7 @@ import com.mynote.admin.model.Version;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
+import java.util.Date;
 import java.util.List;
 
 @Service
@@ -13,6 +14,9 @@ public class VersionService {
     private AppVersionDao appVersionDao;
 
     public int addNewVersion(Version version){
+        version.setStatus(Version.STATUS_IDLE);
+        version.setCreateTime(new Date().getTime());
+        version.setUpdateTime(new Date().getTime());
         appVersionDao.insert(version);
         return version.getId();
     }

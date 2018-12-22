@@ -1,0 +1,56 @@
+<div>
+    <el-button type="primary" @click="dialogFormVisible=true" plain>添加新版本</el-button>
+
+<el-table
+        :data="versionList"
+        style="width:100%;">
+
+    <el-table-column
+            prop="id"
+            label="id">
+    </el-table-column>
+    <el-table-column
+            prop="versionCode"
+            label="版本号">
+    </el-table-column>
+    <el-table-column
+            prop="versionName"
+            label="版本名称">
+    </el-table-column>
+
+    <el-table-column
+            prop="url"
+            label="下载地址">
+    </el-table-column>
+
+    <el-table-column
+            prop="descrption"
+            label="描述">
+    </el-table-column>
+
+    <el-table-column
+            prop="updateTime"
+            label="更新时间">
+    </el-table-column>
+</el-table>
+    <el-dialog title="添加新版本" :visible.sync="dialogFormVisible">
+        <el-form :model="form">
+            <el-form-item label="版本号">
+                <el-input v-model="form.versionCode" autocomplete="off"></el-input>
+            </el-form-item>
+            <el-form-item label="版本名称">
+                <el-input v-model="form.versionName" autocomplete="off"></el-input>
+            </el-form-item>
+            <el-form-item label="下载地址">
+                <el-input v-model="form.url" autocomplete="off"></el-input>
+            </el-form-item>
+            <el-form-item label="描述" >
+                <el-input v-model="form.desc" autocomplete="off"></el-input>
+            </el-form-item>
+        </el-form>
+        <div slot="footer" class="dialog-footer">
+            <el-button @click="dialogFormVisible = false">取消</el-button>
+            <el-button type="primary" @click="submitNewVersion()">提交</el-button>
+        </div>
+    </el-dialog>
+</div>

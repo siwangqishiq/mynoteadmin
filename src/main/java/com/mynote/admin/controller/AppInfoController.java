@@ -24,7 +24,8 @@ public class AppInfoController {
     private VersionService versionService;
 
     @RequestMapping(value= "/api/addversion" , method = RequestMethod.POST)
-    public Result<Long> findAppVersionList(HttpServletRequest request,Version version) throws Exception{
+    public Result<Long> addAppVersion(HttpServletRequest request,Version version) throws Exception{
+        System.out.println("version = " +version.toString());
         long id = versionService.addNewVersion(version);
         System.out.println("id = " + id);
         Result<Long> result = new Result<Long>();

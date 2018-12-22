@@ -1,0 +1,30 @@
+* { margin: 0; padding: 0; }
+html, body {
+    position: relative;
+    height: 100%;
+}
+.admin-title {
+    line-height: 60px;
+    color: #fff;
+    font-size: 20px;
+}
+.g-mn {
+    height: 100%;
+}
+.el-container.is-vertical {
+    height: 100%;
+}
+.el-aside {
+    background-color: #545c64;
+}
+.menu-title {
+    display: block;
+}
+.menu-title a {
+    display: block;
+    text-decoration: none;
+    color: #fff;
+}
+.menu-title a.router-link-active {
+    color: rgb(255, 208, 75);
+}
