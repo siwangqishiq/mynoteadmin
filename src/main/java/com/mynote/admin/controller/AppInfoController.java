@@ -46,5 +46,13 @@ public class AppInfoController {
         return result;
     }
 
+    @RequestMapping(value= "/api/versionList" , method = RequestMethod.DELETE)
+    public Result<Boolean> deleteAppVersion(int id) throws Exception{
+        if(id <= 0)
+            throw new Exception("删除id不合法");
+        Result<Boolean> result = new Result<Boolean>();
+        result.setSuccessData(versionService.deleteVersionById(id));
+        return result;
+    }
 
 }//end class

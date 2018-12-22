@@ -9,7 +9,9 @@ define([
 
         data: function() {
             return {
-                versionList: []
+                versionList: [],
+                dialogFormVisible:false,
+                form : {},
             }
         },
 
@@ -24,7 +26,6 @@ define([
         },
 
         methods: {
-
             getVersionList: function() {
                 var _this = this;
                 _u._$ajax({
@@ -45,7 +46,40 @@ define([
                         alert('erorr');
                     }
                 })
-            }
+            },
+
+            submitNewVersion : function(){
+                var _this = this;
+                _u._$ajax({
+                    url: '/api/addversion',
+                    method: 'POST',
+                    unStringify: true,
+                    data:{
+                        versionCode: this.form.versionCode,
+                        versionName: this.form.versionName,
+                        url: this.form.url,
+                        descrption: this.form.desc,
+                        type: 2
+                    },
+                    success: function(_json) {
+                        if(_json.code != 200){
+                            alert('添加失败');
+                            return;
+                        }
+
+                        var data = _json.data
+                        if(data > 0){
+                            _this.getVersionList()
+                        }
+                                    //console.log(_json);
+                    },
+                    error : function(){
+                        alert('添加失败');
+                    }
+                })
+
+                this.dialogFormVisible = false
+            },
         }
 
     })

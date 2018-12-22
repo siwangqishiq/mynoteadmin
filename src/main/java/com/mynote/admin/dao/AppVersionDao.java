@@ -1,10 +1,7 @@
 package com.mynote.admin.dao;
 
 import com.mynote.admin.model.Version;
-import org.apache.ibatis.annotations.Insert;
-import org.apache.ibatis.annotations.Mapper;
-import org.apache.ibatis.annotations.Select;
-import org.apache.ibatis.annotations.SelectKey;
+import org.apache.ibatis.annotations.*;
 import org.springframework.stereotype.Repository;
 
 import java.util.List;
@@ -27,11 +24,14 @@ public interface AppVersionDao {
 
     @Select("select " +
             "id,versionCode,versionName,url,descrption,extra,status,type,updateTime,createTime" +
-            " from version where type = #{type} order by updateTime asc")
+            " from version where type = #{type} order by updateTime desc")
     public List<Version> findVersionListByType(int type);
 
     @Select("select " +
             "id,versionCode,versionName,url,descrption,extra,status,type,updateTime,createTime" +
             " from version where id = #{id}")
     public Version findVersionById(int id);
+
+    @Delete("delete from version where id = #{id}")
+    public long removeVersionById(int id);
 }//end class

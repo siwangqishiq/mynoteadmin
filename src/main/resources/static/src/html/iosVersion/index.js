@@ -12,6 +12,7 @@ define([
                 versionList:[],
                 dialogFormVisible:false,
                 form : {},
+                removeDialogVisible:false,
             }
         },
 
@@ -41,11 +42,8 @@ define([
                 })
             },
 
-            addNewIOSVersion: function() {
-                var _this = this;
-            },
-
             submitNewVersion : function(){
+                var _this = this;
                 _u._$ajax({
                     url: '/api/addversion',
                     method: 'POST',
@@ -58,7 +56,16 @@ define([
                         type: 1
                     },
                     success: function(_json) {
-                        console.log(_json);
+                        if(_json.code != 200){
+                            alert('添加失败');
+                            return;
+                        }
+
+                        var data = _json.data
+                        if(data > 0){
+                            _this.getVersionList()
+                        }
+                        //console.log(_json);
                     },
                     error : function(){
                         alert('添加失败');
@@ -67,6 +74,10 @@ define([
 
                 this.dialogFormVisible = false
             },
+
+            deleteVersion: function(id){
+                removeDialogVisible = false
+            }
         },
     })
 

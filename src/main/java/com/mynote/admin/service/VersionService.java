@@ -32,4 +32,8 @@ public class VersionService {
     public Version findVersionById(int id){
         return appVersionDao.findVersionById(id);
     }
+
+    public boolean deleteVersionById(int id){
+        return appVersionDao.removeVersionById(id) > 0;
+    }
 }//end class
